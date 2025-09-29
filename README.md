@@ -173,7 +173,7 @@ matten_dataset_output/
 ```
 ---
 
-## Model Training
+## [2] Model Training
 
 ### Setup Training Environment
 
@@ -214,7 +214,7 @@ The training process generates:
 
 ---
 
-## Prediction from Trained Model
+## [3] Prediction from Trained Model
 
 ### Prepare Input Structures
 
