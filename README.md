@@ -3,12 +3,9 @@
 The complete workflow consists of three main stages:
 
 ```
-DFT Calculations (TURBOMOLE)
-         ↓
+[0] DFT Calculations (TURBOMOLE)
 [1] Dataset Preparation (prepare_matten_dataset.sh)
-         ↓
 [2] Model Training (train_atomic_tensor.py)
-         ↓
 [3] Prediction (predict_atomic_tensor.py)
 ```
 
