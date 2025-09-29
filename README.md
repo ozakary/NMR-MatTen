@@ -371,3 +371,5 @@ matten-nmr-workflow/
     ├── input_structures.xyz
     └── output_predictions.csv
 ```
+---
+For further details, please refer to the respective folders or contact the author via the provided email.
