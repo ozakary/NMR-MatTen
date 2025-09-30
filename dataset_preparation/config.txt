@@ -1,0 +1,18 @@
+# MatTen Dataset Preparation Configuration File
+
+# Target atom for NMR predictions (e.g., Xe, C, H, N)
+TARGET_ATOM=Xe
+
+# Lattice parameters (9 values: a1 a2 a3 b1 b2 b3 c1 c2 c3)
+LATTICE_PARAMS=23.86466077 0.0 0.0 0.0 23.86466077 0.0 0.0 0.0 23.86466077
+
+# Output directory name (will be created in parent directory)
+OUTPUT_DIR=matten_dataset_output
+
+# Dataset split ratios (must sum to 1.0)
+TRAIN_RATIO=0.8
+VAL_RATIO=0.1
+TEST_RATIO=0.1
+
+# Random seed for reproducibility
+RANDOM_SEED=42
