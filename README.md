@@ -23,7 +23,7 @@ The complete workflow consists of three main stages:
 
 ### Input Requirements
 
-The preparation script `prepare_matten_dataset.sh` expects TURBOMOLE calculation outputs organized as follows:
+The preparation script [`prepare_matten_dataset.sh`](./dataset_preparation/prepare_matten_dataset.sh) expects TURBOMOLE calculation outputs organized as follows:
 
 ```
 ./
@@ -50,9 +50,9 @@ The preparation script `prepare_matten_dataset.sh` expects TURBOMOLE calculation
 
 **Important**: All processing scripts must be placed inside the `./FINISHED/` directory.
 
-### Configuration File (`config.txt`)
+### Configuration File ([`config.txt`](./dataset_preparation/config.txt))
 
-Create a `config.txt` file in the same directory as `prepare_matten_dataset.sh` with the following parameters:
+Create a [`config.txt`](./dataset_preparation/config.txt) file in the same directory as [`prepare_matten_dataset.sh`](./dataset_preparation/prepare_matten_dataset.sh) with the following parameters:
 
 ```bash
 # Target atom for NMR predictions
@@ -85,18 +85,18 @@ RANDOM_SEED=42
 | `TEST_RATIO` | Fraction for test set (0-1) | `0.1` |
 | `RANDOM_SEED` | Seed for reproducible splits | `42` |
 
-Make the script executable and run it from the directory containing `FINISHED/` and `config.txt`:
+Make the script executable and run it from the directory containing `FINISHED/` and [`config.txt`](./dataset_preparation/config.txt):
 
 ```bash
 chmod +x prepare_matten_dataset.sh
 ./prepare_matten_dataset.sh config.txt
 ```
 ---
-### The `prepare_matten_dataset.sh` will follow three stages:
+### The [`prepare_matten_dataset.sh`](./dataset_preparation/prepare_matten_dataset.sh) will follow three stages:
 
 #### **Stage 1: DFT Data Processing (this stage also applies to SchNet dataset preparation)**
 
-1. **Data Extraction** (`ml_nmr_schnet_dataset_oz-t.py`)
+1. **Data Extraction** ([`ml_nmr_schnet_dataset_oz-t.py`](./dataset_preparation/inside_finished/ml_nmr_schnet_dataset_oz-t.py))
    - Scans all `cluster_*/` directories in `FINISHED/`
    - Extracts atomic coordinates from `coord_*.xyz` files
    - Parses magnetic shielding tensors from `mpshift.out` files
@@ -116,7 +116,7 @@ chmod +x prepare_matten_dataset.sh
        └── structures.csv
    ```
 
-2. **Tensor Alignment** (`alignements.py`)
+2. **Tensor Alignment** ([`alignements.py`](./dataset_preparation/inside_finished/alignements.py))
    - Matches molecules between structure and tensor files
    - Identifies the targeted atom(s) positions from structure data
    - Places non-zero tensors at the correct targeted atom(s) positions
@@ -128,7 +128,7 @@ chmod +x prepare_matten_dataset.sh
    FINISHED/dataset_schnet_shielding_tensors/magnetic_shielding_tensors_modified.csv
    ```
 
-3. **Sanity check** (optional: `grep_commands_verif.sh`)
+3. **Sanity check** (optional: [`grep_commands_verif.sh`](./dataset_preparation/inside_finished/grep_commands_verif.sh))
    - Removes zero-tensor entries for verification
    - Extracts only structures with the targeted atom(s) for validation
    - Generates verification CSV files
@@ -140,13 +140,13 @@ chmod +x prepare_matten_dataset.sh
    └── str_verif.csv    # targeted atom(s) structures only
    ```
 
-4. **Cluster Validation** (optional: `info.sh`)
+4. **Cluster Validation** (optional: [`info.sh`](./dataset_preparation/inside_finished/info.sh))
    - Lists all processed cluster directories
    - Validates completeness of calculations
 
 #### **Stage 2: Dataset Integration**
 
-**Isotropic Shielding Calculation** (`code_data.py`)
+**Isotropic Shielding Calculation** ([`code_data.py`](./dataset_preparation/inside_finished/code_data.py))
 - Loads structure and tensor data
 - Symmetrizes tensors: `T_sym = (T + T^T) / 2`
 - Computes eigenvalues via diagonalization
@@ -160,7 +160,7 @@ FINISHED/structures_with_sigma_iso.csv
 
 #### **Stage 3: JSON Conversion for MatTen**
 
-**Format Conversion** (`csv_to_json_converter_enhanced.py`)
+**Format Conversion** ([`csv_to_json_converter_enhanced.py`](./dataset_preparation/inside_finished/csv_to_json_converter_enhanced.py))
 - Creates output directory: `matten_dataset_output/`
 - Generates configuration file with lattice parameters
 - Converts CSV data to PyMatGen Structure objects
@@ -243,13 +243,13 @@ cp ../matten_dataset_output/dataset_test.json datasets/
 
 ### Configure Model
 
-Create `configs/atomic_tensor.yaml`.
+Create [`configs/atomic_tensor.yaml`](./training_matten/configs/atomic_tensor.yaml).
 
 ### Training Script
 
-Use the provided `train_atomic_tensor.py`.
+Use the provided [`train_atomic_tensor.py`](./training_matten/train_atomic_tensor.py).
 
-### Submit Training Job (`script_train.job`)
+### Submit Training Job ([`script_train.job`](./training_matten/script_train.job))
 
 ### Training Output
 
@@ -279,7 +279,7 @@ Xe  6.82709 11.3068 8.4432
 
 ### Run Predictions
 
-Use the provided `predict_atomic_tensor.py` script:
+Use the provided [`predict_atomic_tensor.py`](./prediction_matten/predict_atomic_tensor.py) script:
 
 ```bash
 python3 predict_atomic_tensor.py \
@@ -289,7 +289,7 @@ python3 predict_atomic_tensor.py \
     --checkpoint last.ckpt
 ```
 
-### Submit Prediction Job (`script_predict.job`)
+### Submit Prediction Job ([`script_predict.job`](./prediction_matten/script_predict.job))
 
 ### Prediction Output Format
 
@@ -312,7 +312,7 @@ sigma_ref = 5797.0  # ppm (typical value, adjust for your reference)
 # Calculate chemical shift
 delta = sigma_ref - sigma_iso
 ```
-
+### IMPORTANT!!! In case of a large number of configurations and limited Job walltime in the supercomputer, it is possible to resume the MatTen prediction by submitting the Job script: [`script_predict_resume.job`](./prediction_matten/script_predict_resume.job)
 ---
 
 ## Directory Structure
