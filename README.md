@@ -118,8 +118,8 @@ chmod +x prepare_matten_dataset.sh
 
 2. **Tensor Alignment** (`alignements.py`)
    - Matches molecules between structure and tensor files
-   - Identifies Xe atom positions from structure data
-   - Places non-zero tensors at correct Xe positions
+   - Identifies the targeted atom(s) positions from structure data
+   - Places non-zero tensors at the correct targeted atom(s) positions
    - Fills remaining positions with zero tensors
    - Ensures consistent atom indexing
 
