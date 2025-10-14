@@ -182,6 +182,46 @@ matten_dataset_output/
 
 ## [2] Model Training
 
+### Installation Setup (Tested in PUHTI and Mahti in [CSC](https://docs.csc.fi/computing/), as well as [LUMI](https://docs.lumi-supercomputer.eu/) Supercomputers)
+
+```bash
+# These are the installation steps for PUHTI (if you don't have access to LUMI, it is recommended to use MatTen in PUHTI instead of MAHTI, as there are more GPU resources)
+# Load Python module (it should be python --version 3.10)
+module load python-data/3.10
+
+# Create a virtual environment (recommended)
+python3 -m venv matten_env
+
+# Activate the created virtual environment
+source matten_env/bin/activate
+
+# Upgrade Pypl
+pip install --upgrade pip
+
+# Install PyTorch 2.0.1 with CUDA 11.8
+pip install torch==2.0.1+cu118 torchvision==0.15.2+cu118 --index-url https://download.pytorch.org/whl/cu118
+
+# Install torch-geometric and dependencies with specific versions
+pip install torch-geometric==2.3.1
+pip install torch-scatter==2.1.1 -f https://data.pyg.org/whl/torch-2.0.1+cu118.html
+
+# Install other required dependencies
+pip install pytorch-lightning==2.0.7
+pip install torchmetrics==0.11.4
+pip install e3nn==0.5.1
+pip install ase==3.22.1
+pip install pymatgen==2023.8.10
+pip install loguru
+pip install torchtyping==0.1.4
+pip install numpy==1.23.5
+pip install wandb
+
+# Clone the repository
+git clone https://github.com/wengroup/matten
+cd matten
+pip install -e .
+```
+
 ### Setup Training Environment
 
 ```bash
