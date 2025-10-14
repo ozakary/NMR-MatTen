@@ -19,7 +19,7 @@ The complete workflow consists of three main stages:
 [3] Prediction (predict_atomic_tensor.py)
 ```
 
-## [1] Dataset Preparation
+## [1] [Dataset Preparation](./dataset_preparation)
 
 ### Input Requirements
 
@@ -180,7 +180,7 @@ matten_dataset_output/
 ```
 ---
 
-## [2] Model Training
+## [2] [Model Training](./training_matten)
 
 ### Installation Setup (Tested in PUHTI and Mahti in [CSC](https://docs.csc.fi/computing/), as well as [LUMI](https://docs.lumi-supercomputer.eu/) Supercomputers)
 
@@ -261,7 +261,7 @@ The training process generates:
 
 ---
 
-## [3] Prediction from Trained Model
+## [3] [Prediction from Trained Model](./prediction_matten)
 
 ### Prepare Input Structures
 
