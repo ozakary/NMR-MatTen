@@ -94,7 +94,7 @@ chmod +x prepare_matten_dataset.sh
 ---
 ### The `prepare_matten_dataset.sh` will follow three stages:
 
-#### **Stage 1: DFT Data Processing**
+#### **Stage 1: DFT Data Processing (this stage also applies to SchNet dataset preparation)**
 
 1. **Data Extraction** (`ml_nmr_schnet_dataset_oz-t.py`)
    - Scans all `cluster_*/` directories in `FINISHED/`
