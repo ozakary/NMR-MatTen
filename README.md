@@ -130,14 +130,14 @@ chmod +x prepare_matten_dataset.sh
 
 3. **Sanity check** (optional: `grep_commands_verif.sh`)
    - Removes zero-tensor entries for verification
-   - Extracts Xe-only structures for validation
+   - Extracts only structures with the targeted atom(s) for validation
    - Generates verification CSV files
 
    **Output:**
    ```
    FINISHED/
    ├── ms_verif.csv     # Non-zero tensors only
-   └── str_verif.csv    # Xe structures only
+   └── str_verif.csv    # targeted atom(s) structures only
    ```
 
 4. **Cluster Validation** (optional: `info.sh`)
@@ -306,7 +306,7 @@ structure_id,atom_index,element,x,y,z,sigma_iso,tensor_xx,tensor_xy,tensor_xz,te
 To convert magnetic shielding (σ) to chemical shifts (δ):
 
 ```python
-# Reference: Free Xe atom shielding
+# Reference: Free Xe atom shielding (this method applies to other noble gases)
 sigma_ref = 5797.0  # ppm (typical value, adjust for your reference)
 
 # Calculate chemical shift
