@@ -312,7 +312,10 @@ sigma_ref = 5797.0  # ppm (typical value, adjust for your reference)
 # Calculate chemical shift
 delta = sigma_ref - sigma_iso
 ```
-### IMPORTANT!!! In case of a large number of configurations and limited Job walltime in the supercomputer, it is possible to resume the MatTen prediction by submitting the Job script: [`script_predict_resume.job`](./prediction_matten/script_predict_resume.job)
+### !!!IMPORTANT!!!
+
+In case of a large number of configurations and limited Job walltime in the supercomputer, it is possible to resume the MatTen prediction by submitting the Job script: [`script_predict_resume.job`](./prediction_matten/script_predict_resume.job)
+
 ---
 
 ## Directory Structure
