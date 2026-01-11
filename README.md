@@ -1,4 +1,4 @@
-# Steps to Generate the NMR-ML Model using MatTen Architecture
+# A Workflow to Generate the NMR-ML Model using MatTen Architecture
 
 ---
 📄 Author: **Ouail Zakary**  
